@@ -1,0 +1,74 @@
+﻿@model APP_Examen.Models.EmployeeModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>EmployeeModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Nombre
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombreCompleto)
+        </dd>
+
+        <dt>
+            Cedula
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cedula)
+        </dd>
+
+        <dt>
+            Correo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.correo)
+        </dd>
+
+        <dt>
+            Edad
+        </dt>
+
+        <dd>
+            @(DateTime.Today.Year - Model.fechaNacimiento.Year) Años
+        </dd>
+
+        <dt>
+            Tiempo Laborado
+        </dt>
+
+        <dd>
+            @(DateTime.Today.Year - Model.fechaIngreso.Year) Años
+        </dd>
+
+        <dt>
+            Jefe
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombreJefe)
+        </dd>
+
+        <dt>
+            Area
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombreArea)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

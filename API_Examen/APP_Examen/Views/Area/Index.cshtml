@@ -1,0 +1,31 @@
+﻿@model List<APP_Examen.Model.AreaModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista de Areas</h2>
+
+<div>
+    @Html.ActionLink("Add new", "Create")
+</div>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Area</th>
+        <th>Descripcion</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Nombre</td>
+            <td>@item.Descripcion</td>
+            <td>
+                <a href="@Url.Action("Edit","Area",new { @id=item.idArea})">Edit</a>
+                <a href="@Url.Action("Delete","Area",new { @id=item.idArea})">Delete</a>
+            </td>
+        </tr>
+    }
+</table>

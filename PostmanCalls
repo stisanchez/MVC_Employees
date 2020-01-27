@@ -1,0 +1,161 @@
+{
+	"info": {
+		"_postman_id": "8f3bd392-06a6-4361-861b-f1d11dba25a6",
+		"name": "API_Sanchez",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetAllCarros",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44304/api/Car/getAllCars",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44304",
+					"path": [
+						"api",
+						"Car",
+						"getAllCars"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCar",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 5\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44304/api/Car/getCar",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44304",
+					"path": [
+						"api",
+						"Car",
+						"getCar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addCar",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"placa\": 55,\n    \"marca\": \"Supra\",\n    \"anio\": \"2020\",\n    \"color\": \"Azul\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44304/api/Car/addCar",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44304",
+					"path": [
+						"api",
+						"Car",
+						"addCar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateCar",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\":1,\n    \"placa\": 1,\n    \"marca\": \"Toyota\",\n    \"anio\": \"200\",\n    \"color\": \"Rosado\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44304/api/Car/updateCar",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44304",
+					"path": [
+						"api",
+						"Car",
+						"updateCar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteCar",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1\n}"
+				},
+				"url": {
+					"raw": "https://localhost:44304/api/Car/deleteCar",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44304",
+					"path": [
+						"api",
+						"Car",
+						"deleteCar"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
