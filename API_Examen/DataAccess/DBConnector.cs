@@ -331,5 +331,73 @@ namespace DataAccess
         }
         #endregion
 
+        #region Abilities
+        /// <summary>
+        /// Get all habilities
+        /// </summary>
+        /// <param name="pArea"></param>
+        /// <returns>List of areas or specific area.</returns>
+        public List<abilities> GetAbilities()
+        {
+            List<abilities> lstAbilities = new List<abilities>();
+            SqlCommand cmd = new SqlCommand(ConfigurationManager.AppSettings["SP_GET_ABILITY"], _con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            this.openConnection();
+
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    abilities objAbility = new abilities
+                    {
+                        idEmpleado = Int32.Parse(reader["idEmpleado"].ToString()),
+                        idHabilidad = Int32.Parse(reader["idHabilidad"].ToString()),
+                        Nombre = reader["NombreHabilidad"].ToString()
+                    };
+                    lstAbilities.Add(objAbility);
+                }
+            }
+            return lstAbilities;
+        }
+
+        public abilities SetAbilities(abilities pAbility)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand(ConfigurationManager.AppSettings["SP_SET_ABILITY"], _con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                // set up the parameters
+                cmd.Parameters.Add("@idEmployee", SqlDbType.Int);
+                cmd.Parameters.Add("@idHabilidad", SqlDbType.Int);
+                cmd.Parameters.Add("@insertAbility", SqlDbType.Int);
+                cmd.Parameters.Add("@nombre", SqlDbType.VarChar,100);
+
+                cmd.Parameters.Add("@codeError", SqlDbType.Int).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("@msjError", SqlDbType.VarChar, 200).Direction = ParameterDirection.Output;
+
+                // set parameter values
+                cmd.Parameters["@idEmployee"].Value = pAbility.idEmpleado;
+                cmd.Parameters["@idHabilidad"].Value = pAbility.idHabilidad;
+                cmd.Parameters["@nombre"].Value = pAbility.Nombre;
+                cmd.Parameters["@insertAbility"].Value = pAbility.insertAbility;
+
+                this.openConnection();
+                cmd.ExecuteNonQuery();
+
+                pAbility.codeError = Convert.ToInt32(cmd.Parameters["@codeError"].Value);
+                pAbility.msjError = cmd.Parameters["@msjError"].Value.ToString();
+            }
+            catch (Exception error)
+            {
+                pAbility.codeError = -1;
+                pAbility.msjError = error.Message;
+            }
+            return pAbility;
+        }
+
+
+        #endregion
+
     }
 }
